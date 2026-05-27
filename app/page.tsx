@@ -5,7 +5,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import TrustBar from "@/components/TrustBar";
 import CategoryGrid from "@/components/CategoryGrid";
-import Highlights from "@/components/Highlights";
+import SignaturePieces from "@/components/SignaturePieces";
 import BespokeSection from "@/components/BespokeSection";
 import InstagramFeed from "@/components/InstagramFeed";
 import Footer from "@/components/Footer";
@@ -51,8 +51,8 @@ export default function Home() {
       <main>
         <Hero />
         <TrustBar />
+        <SignaturePieces />
         <CategoryGrid />
-        <Highlights />
         <BespokeSection />
         <InstagramFeed />
       </main>

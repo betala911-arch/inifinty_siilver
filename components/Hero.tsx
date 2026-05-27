@@ -1,76 +1,36 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { toast } from "sonner";
 import Link from "next/link";
 
 export default function Hero() {
-  const scrollToCollections = () => {
-    document.getElementById("collections")?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  const handleConsult = () => {
-    toast.success("Studio artisan consultation booked!", {
-      description: "We will connect you to our WhatsApp expert momentarily.",
-    });
-    setTimeout(() => {
-      window.open("https://wa.me/918608730000", "_blank");
-    }, 1500);
-  };
-
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative h-screen flex items-center justify-start md:justify-center overflow-hidden">
       <div className="absolute inset-0 z-0">
-        <motion.img
-          initial={{ scale: 1 }}
-          animate={{ scale: 1.15 }}
-          transition={{ duration: 25, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
-          alt="Infinity Silver Hero"
-          className="w-full h-full object-cover opacity-60"
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuDG3zu-K7vCXMLyVcNqWwkAR5Rj176C-ml-i7fkj7Iov4vllkbnWp8BQBNKNqb1dQGntMVMW0L6kZTvfL-25xQFpT1rAOow2NwPB_KeH-P8a77OryPl0YLTaoxoOdSwri4028WEiHSDfsun1wAE_yvJdEj-08sWm3Ii1VNBmMCuOBPjFx4JkMxXxHWspMzUPYricHCBWiJith76rbu4viM4CafYdLC7DXps20tM5qN5CTFuRCpQAN944NEjOd2zjYL8r7X9KHDOaGI"
+        <img 
+          alt="Infinity Silver Hero Editorial" 
+          className="w-full h-full object-cover animate-[ken-burns_10s_ease-in-out_infinite_alternate]" 
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHtBJb9mfMPvpms-JES-mxiEIQ5Qx1YtinfrqJE_BLWuVVfo38mmQdLWWk980HIS8lLyoCt_KuCVA6nmQ9YDqIluE7wt0LQHsYBS_j5wFYJ5OLGyEP8e8jHtMsigpLhcD_bBHCzAVj7u_YK4km9Dy_2bHgJIhgU1ZZX9vEI53adKFPaZlAHCrn_Sy1wVJHnOIXhkTNkfeXiC0EOSA-CjBlGF3yIodl2Fw08khFcMZiaCAOVIGGWOvN9WKk8HnvsqbeqilrUwhRc6s"
         />
-        <div className="absolute inset-0 luxury-gradient"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80"></div>
       </div>
-      
-      <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
-        className="relative z-10 text-center px-margin-mobile max-w-4xl mt-24"
-      >
-        <div className="mb-4 inline-flex items-center gap-1.5 w-fit bg-neutral-900 border border-neutral-800 text-neutral-400 px-3 py-1 text-[12px] rounded-full font-label-caps">
-          <span className="text-[14px]">💎</span> Finest 92.5 Sterling Silver Store
-        </div>
-        
-        <h1 className="font-headline-lg-mobile md:font-headline-lg md:text-display-lg text-on-surface mb-stack-md tracking-tight">
-          Crafted for Eternity. <br className="hidden md:block" />
-          <span className="italic font-normal">Customised for You.</span>
+      <div className="relative z-10 text-left md:text-center px-margin-mobile md:px-margin-desktop max-w-5xl md:mx-auto pt-20">
+        <span className="block font-display-lg text-primary/60 text-[24px] md:text-[32px] italic tracking-widest mb-4">
+          Infinity
+        </span>
+        <h1 className="font-headline-lg-mobile md:font-headline-lg md:text-display-lg text-on-surface mb-stack-lg tracking-tight leading-tight">
+          Finest 92.5 Sterling Silver, <br/><span className="italic font-normal serif">Crafted for Eternity.</span>
         </h1>
-        
-        <p className="font-body-lg text-on-surface-variant mb-stack-lg max-w-2xl mx-auto">
-          Bespoke 92.5 sterling silver studio in Royapettah, Chennai. Tailored masterpieces designed locally, delivered Pan-India.
+        <p className="font-body-lg text-on-surface-variant mb-12 max-w-xl md:mx-auto opacity-90">
+          From timeless daily wear to bespoke custom designs. Handcrafted in Chennai, delivered Pan-India with insured shipping.
         </p>
-        
-        <div className="flex flex-col md:flex-row items-center justify-center gap-stack-md">
-          <motion.button 
-            whileHover={{ scale: 1.05, backgroundColor: "#ffffff", color: "#131313" }}
-            whileTap={{ scale: 0.95 }}
-            onClick={scrollToCollections}
-            className="w-full md:w-auto bg-on-surface text-background px-8 py-4 font-button uppercase tracking-widest transition-colors"
-          >
-            Explore Collections
-          </motion.button>
-          
-          <motion.button 
-            whileHover={{ scale: 1.05, borderColor: "#ffffff", color: "#ffffff", backgroundColor: "rgba(255,255,255,0.05)" }}
-            whileTap={{ scale: 0.95 }}
-            onClick={handleConsult}
-            className="w-full md:w-auto border border-outline-variant bg-transparent text-on-surface px-8 py-4 font-button uppercase tracking-widest transition-all"
-          >
-            Consult Studio Artisan
-          </motion.button>
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-start md:justify-center gap-6">
+          <Link href="#" className="w-full md:w-auto text-center bg-primary text-background px-12 py-5 font-button uppercase text-[11px] tracking-[0.25em] hover:bg-white transition-all duration-500 border border-primary">
+            Explore Collection
+          </Link>
+          <Link href="#" className="w-full md:w-auto text-center border border-primary/50 text-on-surface px-12 py-5 font-button uppercase text-[11px] tracking-[0.25em] hover:bg-white/5 transition-all duration-500 backdrop-blur-sm">
+            Bespoke Design
+          </Link>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

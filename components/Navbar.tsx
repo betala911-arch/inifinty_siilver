@@ -1,101 +1,52 @@
-"use client";
-
-import { ShoppingBag, User, Menu } from "lucide-react";
-import { motion, useScroll, useMotionValueEvent } from "framer-motion";
-import { useState } from "react";
-import { toast } from "sonner";
+import { Search, Heart, ShoppingBag, Menu } from "lucide-react";
+import Link from "next/link";
 
 export default function Navbar() {
-  const { scrollY } = useScroll();
-  const [hidden, setHidden] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    const previous = scrollY.getPrevious() ?? 0;
-    if (latest > previous && latest > 150) {
-      setHidden(true);
-    } else {
-      setHidden(false);
-    }
-    
-    if (latest > 50) {
-      setIsScrolled(true);
-    } else {
-      setIsScrolled(false);
-    }
-  });
-
-  const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  const handleAuth = () => {
-    toast("Authentication Service", { description: "User portal is currently in preview." });
-  };
-
-  const handleCart = () => {
-    toast("Cart Empty", { description: "Your bespoke pieces will appear here." });
-  };
-
   return (
-    <motion.nav 
-      variants={{
-        visible: { y: 0 },
-        hidden: { y: "-100%" },
-      }}
-      animate={hidden ? "hidden" : "visible"}
-      transition={{ duration: 0.35, ease: "easeInOut" }}
-      className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${
-        isScrolled ? "bg-background/95 backdrop-blur-md border-b border-outline-variant/20 shadow-lg" : "bg-transparent border-transparent"
-      }`}
-    >
-      <div className="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto">
-        <div 
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="font-display-lg text-primary tracking-tighter italic text-[24px] md:text-[32px] cursor-pointer"
-        >
+    <nav className="fixed top-0 left-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-white/5">
+      <div className="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-5 max-w-container-max mx-auto">
+        <Link href="/" className="font-display-lg text-primary tracking-tighter italic text-[22px] md:text-[28px] hover:opacity-80 transition-opacity">
           Infinity Silver
-        </div>
+        </Link>
         
-        <div className="hidden md:flex space-x-stack-lg items-center">
-          <button
-            onClick={() => scrollTo("collections")}
-            className="font-button text-button uppercase text-primary border-b-2 border-primary pb-1 hover:text-white transition-colors"
-          >
+        <div className="hidden md:flex space-x-10 items-center">
+          <Link href="#" className="nav-link-refined font-button text-[11px] uppercase tracking-[0.2em] text-primary">
             Collections
-          </button>
-          <button
-            onClick={() => scrollTo("bespoke")}
-            className="font-button text-button uppercase text-on-surface-variant hover:text-primary transition-colors"
-          >
+          </Link>
+          <Link href="#" className="nav-link-refined font-button text-[11px] uppercase tracking-[0.2em] text-on-surface-variant hover:text-primary transition-colors">
             Bespoke Studio
-          </button>
-          <button
-            onClick={() => scrollTo("reviews")}
-            className="font-button text-button uppercase text-on-surface-variant hover:text-primary transition-colors"
-          >
-            Reviews
-          </button>
-          <button
-            onClick={() => scrollTo("footer")}
-            className="font-button text-button uppercase text-on-surface-variant hover:text-primary transition-colors"
-          >
-            About Us
-          </button>
+          </Link>
+          <Link href="#" className="nav-link-refined font-button text-[11px] uppercase tracking-[0.2em] text-on-surface-variant hover:text-primary transition-colors">
+            Best Sellers
+          </Link>
+          <Link href="#" className="nav-link-refined font-button text-[11px] uppercase tracking-[0.2em] text-on-surface-variant hover:text-primary transition-colors">
+            92.5 Hallmark
+          </Link>
+          <Link href="#" className="nav-link-refined font-button text-[11px] uppercase tracking-[0.2em] text-on-surface-variant hover:text-primary transition-colors">
+            About
+          </Link>
         </div>
-        
-        <div className="flex items-center space-x-stack-md">
-          <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={handleCart} className="text-primary hover:text-white transition-colors" aria-label="Cart">
-            <ShoppingBag size={24} />
-          </motion.button>
-          <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={handleAuth} className="text-primary hover:text-white transition-colors" aria-label="Profile">
-            <User size={24} />
-          </motion.button>
-          <button className="md:hidden text-primary" aria-label="Menu">
-            <Menu size={24} />
+
+        <div className="flex items-center space-x-6">
+          <button className="text-[20px] text-primary hover:opacity-70 transition-opacity">
+            <Search size={20} strokeWidth={1.5} />
+          </button>
+          <button className="text-[20px] text-primary hover:opacity-70 transition-opacity hidden md:block">
+            <Heart size={20} strokeWidth={1.5} />
+          </button>
+          <div className="relative">
+            <button className="text-[20px] text-primary hover:opacity-70 transition-opacity">
+              <ShoppingBag size={20} strokeWidth={1.5} />
+            </button>
+            <span className="absolute -top-1 -right-1 bg-primary text-background text-[8px] font-bold w-3 h-3 rounded-full flex items-center justify-center">
+              0
+            </span>
+          </div>
+          <button className="md:hidden text-primary">
+            <Menu size={20} strokeWidth={1.5} />
           </button>
         </div>
       </div>
-    </motion.nav>
+    </nav>
   );
 }
